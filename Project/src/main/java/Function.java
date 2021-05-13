@@ -6,14 +6,26 @@ FP1: f(x) = sqrt((x^2)/(x+4)) + ln(1/x^2) * (-cos(x))
 public class Function {
 
     public static void main(String[] args) {
-        //System.out.println("SquareRoot of 80 is " + SquareRoot(-1));
-        //System.out.format("The cosine of " + 60 + " is %f \n", Cosine(60));
-        //System.out.println("Natural Log of 2.718281828 is " + NaturalLog(2.718281828));
+        try
+        {
+            System.out.println("SquareRoot of 80 is " + SquareRoot(-1));
+            System.out.format("The cosine of " + 60 + " is %f \n", Cosine(60));
+            System.out.println("Natural Log of 2.718281828 is " + NaturalLog(2.718281828));
+        }
+        catch (NegativeNumberException exception)
+        {
+            System.err.println(exception);
+        }
+        catch(InvalidLogInputException Exception)
+        {
+            System.err.println(Exception);
+        }
+
     }
 
     public static double SquareRoot(int num) throws NegativeNumberException {
         if (num < 0)
-            throw new NegativeNumberException();
+            throw new NegativeNumberException("The Square Root of a negative number is not defined.");
 
         if (num == 1)
             return 1;
@@ -49,7 +61,7 @@ public class Function {
 
     public static double NaturalLog(double x) throws InvalidLogInputException {
         if (x <= 0.0)
-            throw new InvalidLogInputException();
+            throw new InvalidLogInputException("The Natural Log of 0 is not defined.");
 
         double old_sum = 0.0;
         double xmlxpl = (x - 1) / (x + 1);
