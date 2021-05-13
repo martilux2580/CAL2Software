@@ -4,31 +4,75 @@ FP1: f(x) = sqrt((x^2)/(x+4)) + ln(1/x^2) * (-cos(x))
  */
 
 public class Function {
+
     public static void main(String[] args) {
-
-
-        //System.out.println("SquareRoot of 80 is " + squareRoot(-1));
-        System.out.format("The cosine of " + 45 + " is %f \n",cosine(45));
-        System.out.println("Natural Log of 2.718281828 is " + NaturalLog(2.718281828));
+        //System.out.println("SquareRoot of 80 is " + SquareRoot(-1));
+        //System.out.format("The cosine of " + 60 + " is %f \n", Cosine(60));
+        //System.out.println("Natural Log of 2.718281828 is " + NaturalLog(2.718281828));
     }
 
-    public static double squareRoot(int num) throws Exception
-    {
-        //temporary variable
-        if(num<0)
-        {
-            throw new Exception("Square Root of negative number does not exist.");
-        }
+    public static double SquareRoot(int num) throws NegativeNumberException {
+        if (num < 0)
+            throw new NegativeNumberException();
+
+        if (num == 1)
+            return 1;
+
         double t;
-        double sqrtroot=num/2;
-        do
-        {
-            t=sqrtroot;
-            sqrtroot=(t+(num/t))/2;
+        double squareRoot = num / 2;
+
+        do {
+            t = squareRoot;
+            squareRoot = (t + (num / t)) / 2;
         }
-        while((t-sqrtroot)!= 0);
-        return sqrtroot;
+        while((t - squareRoot) != 0);
+
+        return squareRoot;
     }
+
+    public static double Cosine(int degrees) {
+        double y = degrees * Math.PI / 180;
+        int n = 10;
+        double cosine = 0;
+
+        for(int i = 0; i <= n; i++){
+            int fac = 1;
+
+            for(int j = 2; j <= 2 * i; j++)
+                fac *= j;
+
+            cosine += Math.pow(-1.0, i ) * Math.pow(y, 2 * i) / fac;
+        }
+
+        return cosine;
+    }
+
+    public static double NaturalLog(double x) throws InvalidLogInputException {
+        if (x <= 0.0)
+            throw new InvalidLogInputException();
+
+        double old_sum = 0.0;
+        double xmlxpl = (x - 1) / (x + 1);
+        double xmlxpl_2 = xmlxpl * xmlxpl;
+        double denom = 1.0;
+        double frac = xmlxpl;
+        double term = frac;
+        double sum = term;
+
+        while ( sum != old_sum ) {
+            old_sum = sum;
+            denom += 2.0;
+            frac *= xmlxpl_2;
+            sum += frac / denom;
+        }
+
+        return 2.0 * sum;
+    }
+
+}
+
+/*
+public class Function {
 
     public static double cosine(int degrees)
     {
@@ -68,3 +112,5 @@ public class Function {
     }
 
 }
+
+ */
