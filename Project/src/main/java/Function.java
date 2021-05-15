@@ -1,11 +1,11 @@
 /*
-FP1: f(x) = sqrt((x^2)/(x+4)) + ln(1/x^2) * (-cos(x))
+P1: f(x) = sqrt((x^2)/(x+4)) + ln(1/x^2) * (-cos(x))
 
  */
 
 public class Function
 {
-    public double SquareRoot(int num) throws NegativeNumberException
+    public double SquareRoot(double num) throws NegativeNumberException
     {
         double t;
         double squareRoot = num / 2;
@@ -29,7 +29,7 @@ public class Function
         return squareRoot;
     }
 
-    public double Cosine(int degrees)
+    public double Cosine(double degrees)
     {
         double y = degrees * Math.PI / 180;
         int n = 10;
@@ -72,5 +72,23 @@ public class Function
         return 2.0 * sum;
     }
 
+    public double CalculateFunction (double x) throws NegativeNumberException, InvalidLogInputException, ArithmeticException
+    {
+        double function;
+        double sqrt;
+        double ln;
+        double cos;
+        if (x == 0 || x == 4)
+            throw new ArithmeticException("Division by zero is not defined.");
+        else
+        {
+            sqrt = SquareRoot(((Math.pow(x,2))/(x+4)));
+            ln = NaturalLog((1/Math.pow(x,2)));
+            cos = -Cosine(x);
+
+            function = sqrt + (ln * cos);
+        }
+        return function;
+    }
 }
 

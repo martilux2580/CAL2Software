@@ -124,4 +124,71 @@ public class FunctionTester {
         //Checking values
         assertEquals(expectedResult, actualResult, 0.00001);
     }
+
+    /* Testing CalculateFunction() function with numbers 0 and 4.
+       Dividing by zero is not defined, must throw Exception.*/
+    @Test
+    void TestCalculateFunctionExceptions() throws InvalidLogInputException, NegativeNumberException, ArithmeticException
+    {
+        Function function = new Function();
+
+        assertThrows(ArithmeticException.class, () -> { function.CalculateFunction(4.0); } );
+        assertThrows(ArithmeticException.class, () -> { function.CalculateFunction(0.0); } );
+    }
+
+    /* Testing CalculateFunction() function with negative numbers.*/
+    @Test
+    void TestCalculateFunctionNegativeNumbers() throws InvalidLogInputException, NegativeNumberException, ArithmeticException
+    {
+        Function function = new Function();
+
+        assertEquals(3.872078705, function.CalculateFunction((-2.5)), 0.00001);
+    }
+
+    /* Testing CalculateFunction() function with positive numbers.*/
+    @Test
+    void TestCalculateFunctionPositiveNumbers() throws InvalidLogInputException, NegativeNumberException, ArithmeticException
+    {
+        Function function = new Function();
+
+        assertEquals(2.811417928, function.CalculateFunction((2.5)), 0.00001);
+    }
+
+    /* Testing CalculateFunction() function with Mockito and positive number. */
+    @Test
+    void TestCalculateFunctionPositiveNumbersMockito() throws InvalidLogInputException, NegativeNumberException, ArithmeticException
+    {
+        //Mockito receives class we want to mock
+        Function function = Mockito.mock(Function.class);
+
+        //Setting up the result → CalculateFunction(8.5)
+        double expectedResult = 6.637281825d;
+        double actualResult = 0.0d;
+
+        //Mockito in Action
+        Mockito.when(function.CalculateFunction(8.5d)).thenReturn(expectedResult);
+        actualResult = function.CalculateFunction(8.5d);
+
+        //Checking values
+        assertEquals(expectedResult, actualResult, 0.00001);
+    }
+
+    /* Testing CalculateFunction() function with Mockito and negative number. */
+    @Test
+    void TestCalculateFunctionNegativeNumbersMockito() throws InvalidLogInputException, NegativeNumberException, ArithmeticException
+    {
+        //Mockito receives class we want to mock
+        Function function = Mockito.mock(Function.class);
+
+        //Setting up the result → CalculateFunction(-3.8)
+        double expectedResult = 11.16119036d;
+        double actualResult = 0.0d;
+
+        //Mockito in Action
+        Mockito.when(function.CalculateFunction(-3.8d)).thenReturn(expectedResult);
+        actualResult = function.CalculateFunction(-3.8d);
+
+        //Checking values
+        assertEquals(expectedResult, actualResult, 0.00001);
+    }
 }
