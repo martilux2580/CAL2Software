@@ -125,14 +125,14 @@ public class FunctionTester {
         assertEquals(expectedResult, actualResult, 0.00001);
     }
 
-    /* Testing CalculateFunction() function with numbers 0 and 4.
+    /* Testing CalculateFunction() function with numbers 0 and -4.
        Dividing by zero is not defined, must throw Exception.*/
     @Test
     void TestCalculateFunctionExceptions() throws InvalidLogInputException, NegativeNumberException, ArithmeticException
     {
         Function function = new Function();
 
-        assertThrows(ArithmeticException.class, () -> { function.CalculateFunction(4.0); } );
+        assertThrows(ArithmeticException.class, () -> { function.CalculateFunction(-4.0); } );
         assertThrows(ArithmeticException.class, () -> { function.CalculateFunction(0.0); } );
     }
 

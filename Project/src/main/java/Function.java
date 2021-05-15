@@ -78,7 +78,7 @@ public class Function
         double sqrt;
         double ln;
         double cos;
-        if (x == 0 || x == 4)
+        if (x == 0 || x == -4)
             throw new ArithmeticException("Division by zero is not defined.");
         else
         {
