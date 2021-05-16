@@ -1,7 +1,4 @@
-/*
-P1: f(x) = sqrt((x^2)/(x+4)) + ln(1/x^2) * (-cos(x))
-
- */
+/*P1: f(x) = sqrt((x^2)/(x+4)) + ln(1/x^2) * (-cos(x))*/
 
 public class Function
 {
@@ -57,10 +54,8 @@ public class Function
         double frac = xmlxpl;
         double term = frac;
         double sum = term;
-
         if (x <= 0.0)
             throw new InvalidLogInputException("The Natural Log of 0 is not defined.");
-
         else {
             while (sum != old_sum) {
                 old_sum = sum;

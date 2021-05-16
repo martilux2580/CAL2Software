@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class Core {
     //Program to calculate the function
     public static void main(String[] args) {
